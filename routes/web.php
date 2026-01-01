@@ -72,7 +72,7 @@ Route::prefix('treks')->group(function () {
     Route::get('/category/{category}', [TrekController::class, 'category'])->name('treks.category');
     
 });
-
+Route::view('/popular-routes','pages.dropdown.trek-routes')->name('trek-routes');
 // Gallery Routes
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/gallery/{album}', [GalleryController::class, 'album'])->name('gallery.album');

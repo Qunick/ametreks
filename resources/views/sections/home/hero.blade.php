@@ -256,7 +256,7 @@
                 placeholder="Search Treks"
                 class="flex-1 px-6 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition">
+            <button class="px-8 py-3 bg-[#005991] text-white font-semibold rounded-lg transition">
                 Search
             </button>
         </div>
