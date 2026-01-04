@@ -139,10 +139,10 @@
                             <i class="bi bi-chevron-down text-xs group-hover:rotate-180 transition-transform duration-300"></i>
                         </button>
                         <div class="absolute left-0 mt-2 w-48 bg-white/95 backdrop-blur-xl border border-gray-200 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2">
-                            <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
+                            <a href="{{ route('trek-routes') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Popular Routes
                             </a>
-                            <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
+                            <a href="{{ route('pages.treks.index') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Seasonal Picks
                             </a>
                             <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
@@ -170,7 +170,7 @@
                             <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Blog
                             </a>
-                            <a href="{{ route('contact') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
+                            <a href="" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Contact Us
                             </a>
                         </div>
@@ -388,7 +388,7 @@
                             <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 rounded-lg transition-all duration-300 text-sm">
                                 Blog
                             </a>
-                            <a href="{{ route('contact') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 rounded-lg transition-all duration-300 text-sm">
+                            <a href="" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 rounded-lg transition-all duration-300 text-sm">
                                 Contact Us
                             </a>
                         </div>

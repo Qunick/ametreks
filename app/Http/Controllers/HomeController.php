@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\GreetingCard;
-use App\Models\HomeSetting;
 use App\Models\SiteSetting;
+use App\Models\Trek;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,7 +18,7 @@ class HomeController extends Controller
         // Get first (single) home settings row
          $siteSettings = SiteSetting::first();
         $card = GreetingCard::latest()->first();
-
-            return view('pages.home', compact('siteSettings', 'card'));
+        $trek = Trek::where('is_active', true)->latest()->take(5)->get();
+            return view('pages.home', compact('siteSettings', 'card', 'trek'));
     }
 }
