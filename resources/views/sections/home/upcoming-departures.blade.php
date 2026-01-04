@@ -180,7 +180,7 @@
                         <div class="lg:hidden">
                             <div class="flex justify-between items-start mb-3">
                                 <div class="flex-1">
-                                    <h5 class="font-normal text-gray-900 text-base mb-1">
+                                    <h5 class="font-normal text-gray-900 mb-1">
                                         ${trip.name}
                                     </h5>
                                     <div class="flex items-center gap-2 text-sm text-[#6D6E70] mb-2">

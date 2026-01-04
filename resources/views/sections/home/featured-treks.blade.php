@@ -64,7 +64,13 @@
                         Journey to the roof of the world through Sherpa villages, ancient monasteries, and breathtaking Himalayan landscapes.
                     </p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <a href="{{ route('trek.show') }}"
+                       {{-- @foreach($treks as $trek)
+    @if($trek)
+        <a href="{{ route('pages.treks.show', ['slug' => $trek->slug]) }}">
+            {{ $trek->title }}
+        </a>
+    @endif
+@endforeach --}}
    class="text-[#005991] font-medium hover:text-[#052734] transition-colors flex items-center gap-1 group">
     View Details
     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
