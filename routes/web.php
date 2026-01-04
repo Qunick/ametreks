@@ -116,7 +116,5 @@ Route::prefix('admin')
         Route::post('/settings/faq', [SettingController::class, 'updateFaq'])->name('settings.faq');
         Route::post('/settings/awards', [SettingController::class, 'updateAwards'])->name('settings.awards');
         Route::post('/settings/reset', [SettingController::class, 'resetToDefaults'])->name('settings.reset');
-
-        // Greeting Cards
         Route::post('/greeting-card', [GreetingCardController::class, 'store'])->name('greeting-card.store');
     });
