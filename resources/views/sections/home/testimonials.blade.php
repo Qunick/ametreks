@@ -85,7 +85,7 @@
         <div class="flex flex-wrap justify-center gap-4 mb-8" id="review-filters">
             <button 
                 onclick="filterReviews('all')"
-                class="px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-[#052734] to-[#005991] text-white shadow-lg"
+                class="px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 bg-[#005991] text-white shadow-lg"
                 id="filter-all"
             >
                 All Reviews
@@ -296,7 +296,7 @@
                     See what thousands of travelers are saying about their adventures
                 </p>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#" class="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#052734] to-[#005991] hover:from-[#052734]/90 hover:to-[#005991]/90 text-white rounded-xl transition-all duration-300 hover:scale-105">
+                    <a href="#" class="flex items-center gap-2 px-6 py-3 bg-[#005991] hover:from-[#052734]/90 hover: text-white rounded-xl transition-all duration-300 hover:scale-105">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                         </svg>
@@ -342,7 +342,7 @@
                     } else if (platform === 'website') {
                         button.className = 'px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 bg-[#DC2626] text-white shadow-lg';
                     } else {
-                        button.className = 'px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 bg-gradient-to-r from-[#052734] to-[#005991] text-white shadow-lg';
+                        button.className = 'px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 bg-[#005991] text-white shadow-lg';
                     }
                 } else {
                     // Apply inactive styles

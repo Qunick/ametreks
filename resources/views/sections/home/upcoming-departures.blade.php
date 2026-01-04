@@ -30,8 +30,8 @@
             <p class="text-[#6D6E70] text-sm lg:text-base mb-4 lg:mb-6">
                 Can't find your preferred dates? We offer custom private departures.
             </p>
-            <button class="bg-gradient-to-r from-[#052734] to-[#005991] hover:from-[#052734]/90 hover:to-[#005991]/90 text-white font-semibold py-2 lg:py-3 px-6 lg:px-8 rounded-lg transition-all duration-300 hover:scale-105 flex items-center gap-2 mx-auto text-sm lg:text-base">
-                GET A QUOTE
+            <button class="bg-[#005991] hover: text-white font-semibold py-2 lg:py-3 px-6 lg:px-8 rounded-lg transition-all duration-300 hover:scale-105 flex items-center gap-2 mx-auto text-sm lg:text-base">
+                View More Dates!!
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -180,7 +180,7 @@
                         <div class="lg:hidden">
                             <div class="flex justify-between items-start mb-3">
                                 <div class="flex-1">
-                                    <h5 class="font-normal text-gray-900 text-base mb-1">
+                                    <h5 class="font-normal text-gray-900 mb-1">
                                         ${trip.name}
                                     </h5>
                                     <div class="flex items-center gap-2 text-sm text-[#6D6E70] mb-2">
