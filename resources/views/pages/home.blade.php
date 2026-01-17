@@ -12,6 +12,8 @@
     
     @include('sections.home.featured-treks')
 
+    @include('sections.home.bike-tours')
+
     @include('sections.home.why-ametreks')
  
     {{-- @include('sections.home.why-choose-us') --}}
@@ -26,10 +28,8 @@
 
     @include('sections.home.recent-blogs')
 
-    @include('sections.home.ame-awards-and-association')
-
-   @if($siteSettings && $siteSettings->is_greetingCard_enabled)
+   {{-- @if($siteSettings && $siteSettings->is_greetingCard_enabled)
     @include('sections.home.greeting-modal')
-@endif
+@endif --}}
 
 @endsection

@@ -27,6 +27,6 @@ class TrekController extends Controller
         $meta_description = $trek->meta_description ?? $trek->short_desc;
         $meta_keywords = $trek->meta_keywords ?? '';
 
-        return view('treks.show', compact('trek','meta_title','meta_description','meta_keywords'));
+        return view('pages.treks.show', compact('trek','meta_title','meta_description','meta_keywords'));
     }
 }

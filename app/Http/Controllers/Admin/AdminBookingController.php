@@ -7,11 +7,11 @@ use App\Models\Booking;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class AdminBookingController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Booking::with(['user', 'tour.destination']);
+        $query = Booking::with(['trek']);
 
         // Search
         if ($request->filled('search')) {

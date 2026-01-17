@@ -32,11 +32,17 @@ class AdminTrekController extends Controller
             'title' => 'required|string|max:255',
             'base_price' => 'nullable|numeric',
             'slug' => 'nullable|unique:treks,slug',
-            'main_image' => 'nullable|image|max:2048',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
         ]);
 
         $data = $request->all();
+$textFields = ['short_desc', 'overview'];
 
+foreach ($textFields as $field) {
+    if (isset($data[$field])) {
+        $data[$field] = Trek::cleanText($data[$field]);
+    }
+}
         // Upload main image
         if ($request->hasFile('main_image')) {
             $data['main_image'] = $request->file('main_image')->store('trek_images','public');
@@ -72,7 +78,8 @@ class AdminTrekController extends Controller
             'title' => 'required|string|max:255',
             'slug' => 'nullable|unique:treks,slug,'.$trek->id,
             'base_price' => 'nullable|numeric',
-            'main_image' => 'nullable|image|max:2048',
+            'main_image' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
+
         ]);
 
         $data = $request->all();

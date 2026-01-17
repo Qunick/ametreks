@@ -8,11 +8,12 @@ class TrekItinerary extends Model
 {
    protected $fillable = [
         'trek_id','day','title','altitude','location',
-        'meal','description','activities','pro_tip'
+        'meal','description','activities','pro_tip','overnight', 'duration', 'distance', 'highlight'
     ];
 
     protected $casts = [
         'activities' => 'array',
+        'highlight' => 'array',
     ];
 
     public function trek()

@@ -4,16 +4,15 @@
 
 @section('content')
 <!-- Hero Section with Parallax Effect -->
+
+
+
 <section class="relative h-[90vh] overflow-hidden">
     <div class="absolute inset-0 hero-parallax">
-    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306"
-         alt="Everest Base Camp"
+    <img src="{{ asset('storage/'.$trek->main_image) }}"
+         alt="{{ $trek->title }}"
          class="w-full h-full object-cover scale-110">
-
-    <!-- Blue overlay WITH opacity -->
     <div class="absolute inset-0 bg-[#005991]/50"></div>
-
-    <!-- Gradient overlay -->
     <div class="absolute inset-0 bg-gradient-to-t from-[#052734] via-[#005991]/60 to-transparent"></div>
 </div>
 
@@ -26,15 +25,15 @@
                 <i class="bi bi-chevron-right text-xs"></i>
                 <a href="/treks" class="hover:text-white transition-colors whitespace-nowrap">Treks</a>
                 <i class="bi bi-chevron-right text-xs"></i>
-                <span class="text-white whitespace-nowrap">Everest Base Camp</span>
+                <span class="text-white whitespace-nowrap">{{ $trek->title }}</span>
             </nav>
             
             <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight animate-fade-in">
-                Everest Base Camp Trek
+               {{ $trek->title }}
             </h1>
             
             <p class="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mb-6 md:mb-8 animate-fade-in-delay">
-                Journey to the base of the world's highest peak through Sherpa villages and stunning Himalayan landscapes
+                {!! $trek->short_desc !!}
             </p>
             
             <!-- Rating and Reviews -->
@@ -135,31 +134,22 @@
                 <div class="space-y-4 md:space-y-6">
                     <div class="prose max-w-none">
                         <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                            The <strong>Everest Base Camp Trek</strong> is a legendary Himalayan adventure that takes you to the foot of the world's highest mountain, <strong>Mount Everest (8,848m)</strong>. This iconic journey offers an unparalleled opportunity to experience authentic Sherpa culture, visit ancient Buddhist monasteries, and witness some of the most breathtaking mountain scenery on Earth.
-                        </p>
-                        <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                            Walking through the heart of the Khumbu region, you'll traverse suspension bridges over roaring rivers, pass through colorful prayer flag-adorned villages, and gradually ascend to the base of the world's highest peak. The trek combines physical challenge with spiritual discovery, cultural immersion with natural wonder.
+                         {!! $trek->overview !!}
                         </p>
                     </div>
                     
-                    <!-- Simple Highlights Cards -->
+                  @if(!empty($trek->highlight))
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
-                        @foreach([
-                            ['title' => 'Kala Patthar Summit', 'desc' => 'Watch sunrise from 5,545m - trek\'s highest point'],
-                            ['title' => 'Everest Base Camp', 'desc' => 'Stand at 5,364m where climbers begin expeditions'],
-                            ['title' => 'Tengboche Monastery', 'desc' => 'Spiritual heart of Khumbu with Ama Dablam views'],
-                            ['title' => 'Sherpa Culture', 'desc' => 'Experience authentic hospitality in mountain villages']
-                        ] as $highlight)
+                        @foreach($trek->highlight as $highlights)
                         <div class="bg-white rounded-xl p-4 md:p-5 border-2 border-gray-100 hover:border-[#005991] hover:shadow-lg transition-all">
-                            <h4 class="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">{{ $highlight['title'] }}</h4>
-                            <p class="text-gray-600 text-xs md:text-sm">{{ $highlight['desc'] }}</p>
+                            <h4 class="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">{{ $highlights }}</h4>
+                           
                         </div>
                         @endforeach
                     </div>
+                    @endif
                 </div>
             </section>
-
-            <!-- Detailed Itinerary -->
             <section class="scroll-reveal" id="itinerary">
                 <div class="flex items-center mb-6 md:mb-8">
                     <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[#005991] flex items-center justify-center mr-3 md:mr-4 shadow-xl">
@@ -170,92 +160,28 @@
                         <p class="text-gray-600 text-sm md:text-base">Day-by-day journey breakdown</p>
                     </div>
                 </div>
-                
+                @if($trek->itineraries && count($trek->itineraries) > 0)
                 <div class="space-y-3 md:space-y-4">
-                    @foreach([
-                        [
-                            'day' => 1, 
-                            'title' => 'Arrival in Kathmandu', 
-                            'altitude' => '1,400m', 
-                            'duration' => 'Arrival day', 
-                            'distance' => '-',
-                            'overnight' => 'Kathmandu',
-                            'meal' => 'Welcome Dinner',
-                            'desc' => 'Welcome to Nepal! Our representative meets you at Tribhuvan International Airport and transfers you to your hotel in Thamel. Evening trek briefing with your experienced guide, gear check, and final preparations. Explore the vibrant streets of Thamel or relax at your hotel.', 
-                            'activities' => ['Airport pickup', 'Hotel check-in', 'Trek briefing', 'Gear check'], 
-                            'tip' => 'Arrive at least one day early to recover from jet lag and complete last-minute shopping in Thamel', 
-                            'highlights' => ['Meet your guide', 'Final preparations', 'Explore Kathmandu']
-                        ],
-                        [
-                            'day' => 2, 
-                            'title' => 'Fly to Lukla, Trek to Phakding', 
-                            'altitude' => '2,610m', 
-                            'duration' => '3-4 hours', 
-                            'distance' => '8km',
-                            'overnight' => 'Phakding',
-                            'meal' => 'Breakfast, Lunch, Dinner',
-                            'desc' => 'Early morning scenic flight to Lukla (35 minutes) - one of the world\'s most thrilling flights. Meet porters and crew, begin trekking alongside the Dudh Koshi River through pine forests. Pass through several small villages before reaching Phakding.', 
-                            'activities' => ['Scenic mountain flight', 'Meet trekking crew', 'River trail walking', 'Village exploration'], 
-                            'highlights' => ['Thrilling Lukla flight', 'First day trekking', 'Dudh Koshi River']
-                        ],
-                        [
-                            'day' => 3, 
-                            'title' => 'Phakding to Namche Bazaar', 
-                            'altitude' => '3,440m', 
-                            'duration' => '5-6 hours', 
-                            'distance' => '11km',
-                            'overnight' => 'Namche Bazaar',
-                            'meal' => 'Breakfast, Lunch, Dinner',
-                            'desc' => 'Cross multiple suspension bridges including the famous Hillary Suspension Bridge. Enter Sagarmatha National Park (permit check). Steep 2-hour ascent to Namche Bazaar. First glimpse of Everest (weather permitting) from the trail. Arrive at the bustling Sherpa capital.', 
-                            'activities' => ['Suspension bridge crossings', 'National Park entry', 'Steep ascent', 'First Everest view'], 
-                            'tip' => 'Take it slow on the final ascent - proper pacing helps acclimatization', 
-                            'highlights' => ['Hillary Bridge', 'Enter Sagarmatha NP', 'First Everest glimpse']
-                        ],
-                        [
-                            'day' => 4, 
-                            'title' => 'Acclimatization in Namche', 
-                            'altitude' => '3,440m', 
-                            'duration' => '4-5 hours', 
-                            'distance' => '5km',
-                            'overnight' => 'Namche Bazaar',
-                            'meal' => 'Breakfast, Lunch, Dinner',
-                            'desc' => 'Essential acclimatization day. Morning hike to Everest View Hotel (3,880m) for spectacular panoramic views of Everest, Lhotse, Ama Dablam, and Thamserku. Visit Sherpa Museum and learn about Everest expeditions. Explore Namche\'s markets, bakeries, and shops. Optional visit to Khumjung village and Hillary School.', 
-                            'activities' => ['Everest View Hotel hike', 'Museum visit', 'Market exploration', 'Village tour'], 
-                            'tip' => 'Climb high, sleep low - this hike prepares your body for higher altitudes', 
-                            'highlights' => ['Everest panorama', 'Sherpa culture', 'Local market']
-                        ],
-                        [
-                            'day' => 5, 
-                            'title' => 'Namche to Tengboche', 
-                            'altitude' => '3,860m', 
-                            'duration' => '5-6 hours', 
-                            'distance' => '10km',
-                            'overnight' => 'Tengboche',
-                            'meal' => 'Breakfast, Lunch, Dinner',
-                            'desc' => 'Contour trail with stunning mountain views. Descend to Dudh Koshi River, then climb through rhododendron and magnolia forests. Reach Tengboche Monastery - the spiritual center of Khumbu region. Spectacular close-up views of Ama Dablam. Attend evening prayer ceremony (puja).', 
-                            'activities' => ['Forest trekking', 'Monastery visit', 'Prayer ceremony', 'Mountain photography'], 
-                            'highlights' => ['Tengboche Monastery', 'Ama Dablam views', 'Buddhist ceremony']
-                        ]
-                    ] as $day)
+                    @foreach($trek->itineraries as $day)
                     <div class="itinerary-item bg-white rounded-xl md:rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-[#005991] hover:shadow-xl transition-all">
-                        <button onclick="toggleItinerary({{ $day['day'] }})" class="w-full p-4 md:p-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
+                        <button onclick="toggleItinerary({{ $day->day }})" class="w-full p-4 md:p-6 flex items-center justify-between text-left hover:bg-gray-50 transition-colors">
                             <div class="flex items-center flex-1">
                                 <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-[#005991] flex items-center justify-center mr-3 md:mr-5 shadow-lg flex-shrink-0">
-                                    <span class="text-xl md:text-2xl font-bold text-white">{{ $day['day'] }}</span>
+                                    <span class="text-xl md:text-2xl font-bold text-white">{{ $day->day }}</span>
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-0.5 md:mb-1">Day {{ $day['day'] }}: {{ $day['title'] }}</h3>
+                                    <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-0.5 md:mb-1">Day {{ $day->day }}: {{ $day->title }}</h3>
                                     <div class="flex flex-wrap gap-2 md:gap-4 text-xs md:text-sm text-gray-600">
-                                        <span class="flex items-center"><i class="bi bi-altitude mr-1 text-[#005991]"></i> {{ $day['altitude'] }}</span>
-                                        <span class="flex items-center"><i class="bi bi-clock mr-1 text-[#99C723]"></i> {{ $day['duration'] }}</span>
-                                        <span class="flex items-center"><i class="bi bi-map mr-1 text-[#4D8BB2]"></i> {{ $day['distance'] }}</span>
+                                        <span class="flex items-center"><i class="bi bi-altitude mr-1 text-[#005991]"></i> {{ $day->altitude }}</span>
+                                        <span class="flex items-center"><i class="bi bi-clock mr-1 text-[#99C723]"></i> {{ $day->duration }}</span>
+                                        <span class="flex items-center"><i class="bi bi-map mr-1 text-[#4D8BB2]"></i> {{ $day->distance }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <i class="bi bi-chevron-down text-xl md:text-2xl text-gray-400 transition-transform duration-300" id="chevron-{{ $day['day'] }}"></i>
+                            <i class="bi bi-chevron-down text-xl md:text-2xl text-gray-400 transition-transform duration-300" id="chevron-{{ $day->day }}"></i>
                         </button>
-                        
-                        <div class="itinerary-content hidden px-4 md:px-6 pb-4 md:pb-6" id="content-{{ $day['day'] }}">
+
+                        <div class="itinerary-content hidden px-4 md:px-6 pb-4 md:pb-6" id="content-{{ $day->day }}">
                             <div class="pl-0 md:pl-20 md:border-l-4 md:border-[#005991]/30 md:ml-8">
                                 <!-- Overnight and Meal Info -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
@@ -264,14 +190,14 @@
                                             <i class="bi bi-moon-stars text-[#005991] mr-2"></i>
                                             <h4 class="font-bold text-gray-900 text-sm md:text-base">Overnight</h4>
                                         </div>
-                                        <p class="text-gray-700 text-sm md:text-base">{{ $day['overnight'] }}</p>
+                                        <p class="text-gray-700 text-sm md:text-base">{{ $day->overnight }}</p>
                                     </div>
                                     <div class="bg-[#99C723]/5 rounded-xl p-3 md:p-4">
                                         <div class="flex items-center mb-1 md:mb-2">
                                             <i class="bi bi-egg-fried text-[#99C723] mr-2"></i>
                                             <h4 class="font-bold text-gray-900 text-sm md:text-base">Meal</h4>
                                         </div>
-                                        <p class="text-gray-700 text-sm md:text-base">{{ $day['meal'] }}</p>
+                                        <p class="text-gray-700 text-sm md:text-base">{{ $day->meal }}</p>
                                     </div>
                                 </div>
                                 
@@ -282,7 +208,7 @@
                                 </div>
                                 
                                 <!-- Description -->
-                                <p class="text-gray-700 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">{{ $day['desc'] }}</p>
+                                <p class="text-gray-700 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">{{ $day->description }}</p>
                                 
                                 <!-- Activities Grid -->
                                 <div class="bg-[#005991]/5 rounded-xl p-4 md:p-5 mb-4 md:mb-6">
@@ -291,7 +217,7 @@
                                         Today's Activities
                                     </h4>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
-                                        @foreach($day['activities'] as $activity)
+                                        @foreach($day->activities as $activity)
                                         <div class="flex items-center bg-white rounded-lg px-2 py-1.5 md:px-3 md:py-2 text-xs md:text-sm">
                                             <i class="bi bi-check-circle-fill text-[#99C723] mr-1 md:mr-2"></i>
                                             <span class="text-gray-700">{{ $activity }}</span>
@@ -301,24 +227,23 @@
                                 </div>
                                 
                                 <!-- Highlights -->
-                                @if(isset($day['highlights']))
+                                @if($day->highlight)
                                 <div class="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-6">
-                                    @foreach($day['highlights'] as $highlight)
+                                    @foreach($day->highlight as $highlights)
                                     <span class="bg-[#99C723]/20 text-gray-900 px-2 py-0.5 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium border border-[#99C723]/30">
-                                        <i class="bi bi-star-fill text-[#99C723] mr-0.5 md:mr-1"></i>{{ $highlight }}
+                                        <i class="bi bi-star-fill text-[#99C723] mr-0.5 md:mr-1"></i>{{ $highlights }}
                                     </span>
                                     @endforeach
                                 </div>
                                 @endif
-                                
-                                <!-- Pro Tip -->
-                                @if(isset($day['tip']))
+                            
+                                @if(($day->pro_tip))
                                 <div class="bg-amber-500/10 rounded-xl p-3 md:p-4 border border-amber-500/30">
                                     <h5 class="font-bold text-gray-900 mb-1 md:mb-2 flex items-center text-sm md:text-base">
                                         <i class="bi bi-lightbulb-fill text-amber-600 mr-1 md:mr-2"></i>
                                         Pro Tip
                                     </h5>
-                                    <p class="text-xs md:text-sm text-gray-700">{{ $day['tip'] }}</p>
+                                    <p class="text-xs md:text-sm text-gray-700">{{ $day->pro_tip }}</p>
                                 </div>
                                 @endif
                             </div>
@@ -326,6 +251,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
                 
                 <!-- Download Itinerary Button -->
                 <div class="mt-6 md:mt-8 text-center">
@@ -363,32 +289,25 @@
                 <div class="bg-white rounded-xl md:rounded-2xl border-2 border-gray-200 overflow-hidden">
                     <!-- Group Departures (Default) -->
                     <div id="group-departures" class="p-4 md:p-6 space-y-3 md:space-y-4">
-                        @foreach([
-                            ['date' => 'March 15, 2025', 'seats' => 8, 'status' => 'Available', 'color' => '#99C723', 'price' => '$1,500'],
-                            ['date' => 'April 5, 2025', 'seats' => 5, 'status' => 'Available', 'color' => '#99C723', 'price' => '$1,500'],
-                            ['date' => 'April 20, 2025', 'seats' => 2, 'status' => 'Filling Fast', 'color' => '#C9302C', 'price' => '$1,500'],
-                            ['date' => 'May 10, 2025', 'seats' => 10, 'status' => 'Available', 'color' => '#99C723', 'price' => '$1,500'],
-                            ['date' => 'September 8, 2025', 'seats' => 12, 'status' => 'Available', 'color' => '#99C723', 'price' => '$1,500'],
-                            ['date' => 'October 15, 2025', 'seats' => 6, 'status' => 'Available', 'color' => '#99C723', 'price' => '$1,500']
-                        ] as $departure)
+                        @foreach($trek->departures as $departure)
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 md:p-4 border border-gray-200 rounded-xl hover:bg-[#005991]/5 transition-all">
                             <div class="flex-1 mb-2 sm:mb-0">
                                 <div class="flex items-center mb-1 md:mb-2">
                                     <i class="bi bi-calendar-date text-[#005991] mr-2 md:mr-3 text-base md:text-lg"></i>
-                                    <span class="font-bold text-gray-900 text-sm md:text-base">{{ $departure['date'] }}</span>
+                                    <span class="font-bold text-gray-900 text-sm md:text-base">{{$departure->departure_date }}</span>
                                 </div>
                                 <div class="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm">
                                     <span class="text-gray-600">
-                                        <i class="bi bi-people mr-0.5 md:mr-1"></i> {{ $departure['seats'] }} spots left
+                                        <i class="bi bi-people mr-0.5 md:mr-1"></i> {{ $departure->spots_left }} spots left
                                     </span>
-                                    <span class="px-1.5 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-medium" style="background: {{ $departure['color'] }}20; color: {{ $departure['color'] }};">
-                                        {{ $departure['status'] }}
+                                    <span class="px-1.5 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-medium" style="background: {{ $departure->color }}20; color: {{ $departure->color }};">
+                                        {{ $departure->status }}
                                     </span>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between sm:justify-end space-x-2 md:space-x-4">
-                                <span class="font-bold text-gray-900 text-sm md:text-base">{{ $departure['price'] }}</span>
-                                <button onclick="selectDeparture('{{ $departure['date'] }}', 'group')" class="bg-[#005991] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg font-medium hover:bg-[#052734] transition-all text-xs md:text-sm whitespace-nowrap">
+                                <span class="font-bold text-gray-900 text-sm md:text-base">{{ $departure->price }}</span>
+                                <button onclick="selectDeparture('{{ $departure->departure_date }}', 'group')" class="bg-[#005991] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-lg font-medium hover:bg-[#052734] transition-all text-xs md:text-sm whitespace-nowrap">
                                     Join
                                 </button>
                             </div>
@@ -644,7 +563,7 @@
                         <div class="relative z-10">
                             <div class="flex justify-between items-start mb-1 md:mb-2">
                                 <div>
-                                    <div class="text-3xl md:text-5xl font-bold mb-0.5 md:mb-1" id="price-display">$1,500</div>
+                                    <div class="text-3xl md:text-5xl font-bold mb-0.5 md:mb-1" id="price-display">${{ $trek->base_price ?? '0.00' }}</div>
                                     <div class="text-white/80 text-xs md:text-sm">per person</div>
                                 </div>
                                 <div class="bg-white/20 backdrop-blur-md px-2 py-0.5 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-semibold">

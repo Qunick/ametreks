@@ -167,17 +167,28 @@
                             <a href="{{ route('teams') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Our Team
                             </a>
-                            <a href="#" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
+                            <a href="{{ route('blogs') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Blog
+                            </a>
+                            <a href="{{ route('reviews.index') }}" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
+                                Reviews
                             </a>
                             <a href="" class="block px-4 py-2 text-[#052734] hover:text-[#005991] hover:bg-gray-50 transition-all duration-300">
                                 Contact Us
                             </a>
+                            
                         </div>
                     </li>
+                     <li>
+                            <a href="{{ route('booking.page') }}" 
+                               class="flex items-center space-x-2 px-6 py-2 bg-[#005991] rounded-full font-semibold text-white">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                <span>Book Now</span>
+                            </a>
+                        </li>
 
                     <!-- Login/User Button -->
-                    @auth
+                    {{-- @auth
                         <!-- User Dropdown -->
                         <li class="relative group">
                             <button class="flex items-center space-x-2 px-4 py-2 rounded-full font-semibold text-[#052734] hover:text-[#005991] transition-all duration-300">
@@ -210,7 +221,7 @@
                                 <span>Login</span>
                             </a>
                         </li>
-                    @endauth
+                    @endauth --}}
                 </ul>
 
                 <!-- Mobile Menu Button -->
@@ -395,7 +406,7 @@
                     </div>
 
                     <!-- Login/Register Buttons -->
-                    @auth
+                    {{-- @auth
                         <div class="pt-4 border-t border-gray-200">
                             <a href="#" class="block px-4 py-3 text-[#052734] hover:text-[#005991] hover:bg-gray-50 rounded-lg transition-all duration-300 mb-2">
                                 <i class="bi bi-person-circle mr-2"></i> My Profile
@@ -421,7 +432,7 @@
                                 <i class="bi bi-person-plus mr-2"></i> Register
                             </a>
                         </div>
-                    @endauth
+                    @endauth --}}
                 </div>
             </div>
         </nav>

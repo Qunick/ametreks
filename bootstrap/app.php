@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->append([
             \App\Http\Middleware\TrustProxies::class,
+             \App\Http\Middleware\DetectLocaleAndRegion::class,
             \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
         ]);
 

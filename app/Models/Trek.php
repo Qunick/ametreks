@@ -28,6 +28,13 @@ class Trek extends Model
         });
     }
 
+    public static function cleanText(string $text): string
+    {
+        $text = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $text);
+        $text = preg_replace('/ style=("|\')(.*?)("|\')/', '', $text);
+        return trim($text);
+    }
+
     public function itineraries()
     {
         return $this->hasMany(TrekItinerary::class);
@@ -42,4 +49,26 @@ class Trek extends Model
     {
         return $this->hasMany(TrekGallery::class);
     }
+     public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'trek_tags');
+    }
+
+     public function inclusions()
+    {
+        return $this->hasMany(TrekInclusion::class);
+    }
+ public function exclusions()
+    {
+        return $this->hasMany(TrekExclusion::class);
+    }
+     public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+    public function faqs()
+{
+    return $this->hasMany(Faq::class)->orderBy('order');
+}
+
 }
