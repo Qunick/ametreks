@@ -50,6 +50,11 @@ class Tag extends Model
         return $this->belongsToMany(Trek::class, 'trek_tags');
     }
 
+     public function blogs()
+    {
+        return $this->belongsToMany(Blog::class);
+    }
+
     /**
      * Scope active tags
      */

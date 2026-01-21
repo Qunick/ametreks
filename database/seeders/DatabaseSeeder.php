@@ -107,8 +107,5 @@ class DatabaseSeeder extends Seeder
         foreach ($tours as $tourData) {
             Tour::create($tourData);
         }
-
-        // Create home settings
-        HomeSetting::getSettings();
     }
 }

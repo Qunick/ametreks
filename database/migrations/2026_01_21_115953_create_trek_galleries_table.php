@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trek_departures', function (Blueprint $table) {
+        Schema::create('trek_galleries', function (Blueprint $table) {
             $table->id();
              $table->foreignId('trek_id')->constrained()->cascadeOnDelete();
 
-            $table->date('departure_date');
-            $table->decimal('price', 10, 2);
-            $table->string('currency')->default('USD');
-            $table->integer('spots_left')->nullable();
-            $table->enum('status', ['Available','Limited','Sold Out'])->default('Available');
-            $table->boolean('is_guaranteed')->default(false);
+            $table->string('image_path');
+            $table->string('alt_text')->nullable();
+            $table->integer('sort_order')->default(0);
+
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trek_departures');
+        Schema::dropIfExists('trek_galleries');
     }
 };

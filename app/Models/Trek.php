@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Trek extends Model
 {
     protected $fillable = [
+        'country_id', 'region_id', 'trek_type_id',
         'is_active','is_featured','is_bookable','noindex',
         'trip_type',
         'slug','meta_title','meta_keywords','meta_description',
@@ -33,6 +34,20 @@ class Trek extends Model
         $text = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $text);
         $text = preg_replace('/ style=("|\')(.*?)("|\')/', '', $text);
         return trim($text);
+    }
+      public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    public function trekType()
+    {
+        return $this->belongsTo(TrekType::class);
     }
 
     public function itineraries()

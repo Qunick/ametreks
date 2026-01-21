@@ -1,6 +1,4 @@
 <?php
-// app/Models/Review.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,32 +9,47 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = [
-        'trek_id',
         'name',
         'email',
+        'phone',
+        'location',
+        'trek_id',
+        'title',
         'rating',
         'comment',
         'status',
-        'location',
-        'verification_token',
-        'verified_at'
     ];
 
-    // Relationship with Trek
+    /* -----------------------------
+       Relationships
+    ------------------------------ */
+
     public function trek()
     {
         return $this->belongsTo(Trek::class);
     }
 
-    // Scope for approved reviews
+    public function photos()
+    {
+        return $this->hasMany(ReviewPhoto::class);
+    }
+
+    /* -----------------------------
+       Scopes (for filters)
+    ------------------------------ */
+
     public function scopeApproved($query)
     {
         return $query->where('status', 'approved');
     }
 
-    // Scope for verified reviews
-    public function scopeVerified($query)
+    public function scopePending($query)
     {
-        return $query->whereNotNull('verified_at');
+        return $query->where('status', 'pending');
+    }
+
+    public function scopeRejected($query)
+    {
+        return $query->where('status', 'rejected');
     }
 }

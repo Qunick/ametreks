@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class Admin
 {
@@ -18,7 +19,7 @@ class Admin
 
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || Auth::user()->is_admin !== 1) {
+        if (!Auth::check() || !Auth::user()->isAdmin()) {
             abort(403, 'Unauthorized');
         }
 

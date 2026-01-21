@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('trek_exclusions', function (Blueprint $table) {
             $table->id();
-             $table->string('name');
-    $table->string('slug')->unique();
-    $table->string('color')->default('#3B82F6');
+            $table->foreignId('trek_id')->constrained()->cascadeOnDelete();
+    $table->string('title');
+    $table->text('description')->nullable();
+    $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('trek_exclusions');
     }
 };

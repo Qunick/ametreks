@@ -648,5 +648,6 @@ document.getElementById('passport_photo').addEventListener('change', function(e)
         reader.readAsDataURL(file);
     }
 });
+
 </script>
 @endsection

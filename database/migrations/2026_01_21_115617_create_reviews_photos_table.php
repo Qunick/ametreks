@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trek_faqs', function (Blueprint $table) {
+        Schema::create('reviews_photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trek_id')->constrained()->onDelete('cascade');
-            $table->string('question');
-            $table->text('answer');
-            $table->integer('order')->default(0);
-            $table->boolean('is_active')->default(true);
+             $table->foreignId('review_id')
+                  ->constrained()
+                  ->cascadeOnDelete();
+
+            $table->string('photo_path');
+
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trek_faqs');
+        Schema::dropIfExists('reviews_photos');
     }
 };

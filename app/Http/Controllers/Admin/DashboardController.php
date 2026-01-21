@@ -9,6 +9,7 @@ use App\Models\HomeSetting;
 use App\Models\SiteSetting;
 use App\Models\Trek;
 use App\Models\User;
+use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -42,9 +43,10 @@ class DashboardController extends Controller
     
     $totalTours = Trek::count();
     $activeTours = Trek::where('is_active', true)->count();
+    $activities = Activity::latest()->take(10)->get();
     // $totalBookings = Booking::count();
     
-    return view('admin.dashboard', compact('treks', 'totalTours', 'activeTours'));
+    return view('admin.dashboard', compact('treks', 'totalTours', 'activeTours', 'activities'));
         $siteSettings = SiteSetting::getSettings();
         // $homeSettings = HomeSetting::getSettings();
 

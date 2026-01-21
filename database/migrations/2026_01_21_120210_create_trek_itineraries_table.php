@@ -23,6 +23,11 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->json('activities')->nullable();
             $table->string('pro_tip')->nullable();
+            $table->string('overnight')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('distance')->nullable();
+            $table->json('highlight')->nullable();
+
             $table->timestamps();
         });
     }

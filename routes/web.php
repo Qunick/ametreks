@@ -27,9 +27,20 @@ use App\Http\Controllers\Admin\AdminTrekFaqController;
 // ----------------------
 // AUTH ROUTES
 // ----------------------
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('admin.login.submit');
+
+
+//Admin Login Routes
+Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('admin/login', [AuthController::class, 'login'])->name('admin.login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+//User Login Routes
+// Route::get('login', [AuthController::class, 'showLoginForm'])->name('user.login');
+// Route::post('login', [AuthController::class, 'userLogin'])->name('user.login.submit');
+// Route::get('register', [AuthController::class, 'showUserRegisterForm'])->name('user.register');
+// Route::post('register', [AuthController::class, 'userRegister'])->name('user.register.submit');
+// Route::post('/user/logout', [AuthController::class, 'userLogout'])->name('user.logout');
 
 // ----------------------
 // PUBLIC ROUTES
@@ -191,3 +202,29 @@ Route::prefix('admin/treks/{trek}')
     Route::post('/faq/update-order', [AdminTrekFaqController::class, 'updateOrder'])->name('faq.update-order');
     Route::post('/faq/store-multiple', [AdminTrekFaqController::class, 'storeMultiple'])->name('faq.store-multiple');
     });
+
+
+    Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+    
+    // Google OAuth routes
+    Route::get('/login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [AuthController::class, 'handleGoogleCallback']);
+});
+
+// Authenticated user routes
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    // User dashboard and profile
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::post('/profile/update', [UserController::class, 'updateProfile'])->name('user.profile.update');
+    Route::post('/profile/preferences', [UserController::class, 'updatePreferences'])->name('user.preferences.update');
+    
+    // Matching features
+    Route::get('/matches', [UserController::class, 'getMatches'])->name('user.matches');
+    Route::get('/find-similar', [UserController::class, 'findSimilarInterests'])->name('user.find.matches');
+});
+

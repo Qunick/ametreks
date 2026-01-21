@@ -36,7 +36,7 @@ return [
     |
     */
 
-    'service' => null,
+    'service' => 'maxmind_database',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'cache' => 'all',
+    'cache' => 'none',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +114,7 @@ return [
     |
     */
 
-    'cache_tags' => ['torann-geoip-location'],
+    'cache_tags' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -135,21 +135,21 @@ return [
     | Return when a location is not found.
     |
     */
+// 'default_location' => [
+//     'ip' => '127.0.0.0',
+//     'iso_code' => 'AR',
+//     'country' => 'Nepal',
+//     'city' => 'Kathmandu',
+//     'state' => 'Bagmati',
+//     'state_name' => 'Bagmati Province',
+//     'postal_code' => '44600',
+//     'lat' => 27.7172,
+//     'lon' => 85.3240,
+//     'timezone' => 'Asia/Kathmandu',
+//     'continent' => 'AS',
+//     'default' => true,
+//     'currency' => 'NPR',
+// ],
 
-    'default_location' => [
-        'ip' => '127.0.0.0',
-        'iso_code' => 'US',
-        'country' => 'United States',
-        'city' => 'New Haven',
-        'state' => 'CT',
-        'state_name' => 'Connecticut',
-        'postal_code' => '06510',
-        'lat' => 41.31,
-        'lon' => -72.92,
-        'timezone' => 'America/New_York',
-        'continent' => 'NA',
-        'default' => true,
-        'currency' => 'USD',
-    ],
 
 ];

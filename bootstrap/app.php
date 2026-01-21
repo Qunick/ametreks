@@ -8,6 +8,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
+        api: __DIR__.'/../routes/api.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\TrustProxies::class,
              \App\Http\Middleware\DetectLocaleAndRegion::class,
             \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
+            \App\Http\Middleware\TrackGuestVisit::class,
         ]);
 
         $middleware->alias([
